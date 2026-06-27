@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Run Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <p class="eyebrow">Run Tracker</p>
+    <h1>Every mile, accounted for.</h1>
+  </header>
+
+  <main>
+
+    <section class="goal-section" aria-labelledby="goal-heading">
+      <div class="goal-grid">
+
+        <div class="ring-card">
+          <div class="ring-wrap">
+            <svg viewBox="0 0 120 120" class="ring" aria-hidden="true">
+              <circle class="ring-track" cx="60" cy="60" r="54"></circle>
+              <circle class="ring-progress" id="ringProgress" cx="60" cy="60" r="54"></circle>
+            </svg>
+            <div class="ring-center">
+              <span class="ring-value" id="ringValue">--</span>
+              <span class="ring-unit">to goal</span>
+            </div>
+          </div>
+          <p class="goal-summary" id="goalSummary">Set a goal to start tracking progress.</p>
+          <p class="goal-days" id="goalDays"></p>
+        </div>
+
+        <form class="card goal-form" id="goalForm">
+          <h2 id="goal-heading">Set your goal</h2>
+
+          <label for="goalType">Goal type</label>
+          <select id="goalType" name="goalType">
+            <option value="weeklyMileage">Weekly mileage target</option>
+            <option value="longRun">Longest single run target</option>
+          </select>
+
+          <label for="goalTarget">Target (miles)</label>
+          <input type="number" id="goalTarget" name="goalTarget" min="0.1" step="0.1" placeholder="e.g. 10">
+
+          <label for="goalDate">Target date (optional)</label>
+          <input type="date" id="goalDate" name="goalDate">
+
+          <p class="form-error" id="goalError" role="alert"></p>
+
+          <button type="submit">Save goal</button>
+        </form>
+
+      </div>
+    </section>
+
+    <section class="stats-section" aria-label="Running totals">
+      <div class="stat-card">
+        <span class="stat-label">This week</span>
+        <span class="stat-value" id="statWeek">0.0</span>
+        <span class="stat-unit">mi</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">This month</span>
+        <span class="stat-value" id="statMonth">0.0</span>
+        <span class="stat-unit">mi</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Streak</span>
+        <span class="stat-value" id="statStreak">0</span>
+        <span class="stat-unit">weeks</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Avg pace</span>
+        <span class="stat-value" id="statPace">--</span>
+        <span class="stat-unit">/ mi</span>
+      </div>
+    </section>
+
+    <section class="card log-section" aria-labelledby="log-heading">
+      <h2 id="log-heading">Log a run</h2>
+      <form id="runForm" class="run-form">
+        <div class="field">
+          <label for="runDate">Date</label>
+          <input type="date" id="runDate" name="runDate">
+        </div>
+        <div class="field">
+          <label for="runDistance">Distance (mi)</label>
+          <input type="number" id="runDistance" name="runDistance" min="0.1" step="0.01" placeholder="3.1">
+        </div>
+        <div class="field">
+          <label for="runDuration">Duration (min)</label>
+          <input type="number" id="runDuration" name="runDuration" min="1" step="1" placeholder="28">
+        </div>
+        <button type="submit">Log run</button>
+      </form>
+      <p class="form-error" id="runError" role="alert"></p>
+    </section>
+
+    <section class="card history-section" aria-labelledby="history-heading">
+      <div class="history-header">
+        <h2 id="history-heading">Run history</h2>
+        <label class="filter-label" for="historyFilter">
+          Show
+          <select id="historyFilter">
+            <option value="all">All time</option>
+            <option value="week">This week</option>
+            <option value="month">This month</option>
+          </select>
+        </label>
+      </div>
+      <ul class="history-list" id="historyList">
+        <li class="empty-state">No runs logged yet. Your first one starts the streak.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <button type="button" id="resetButton" class="reset-button">Reset all data</button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
